@@ -1,0 +1,9 @@
+<!doctype html>
+<html>
+    <head>
+    </head>
+    <body>
+    [%# nav_bar %]
+    <header>
+        <a href="http://google.com">Google</a>
+    </header>
