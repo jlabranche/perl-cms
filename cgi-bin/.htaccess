@@ -1,2 +1,4 @@
-AddHandler cgi-script .cgi
-Options +ExecCGI
+<Files *>
+    Options +ExecCGI
+    SetHandler cgi-script
+</Files>
