@@ -1,0 +1,8 @@
+#!/usr/bin/perl -w
+use strict;
+
+use lib '../lib';
+use base qw(App::Install);
+
+__PACKAGE__->navigate;
+exit 1;

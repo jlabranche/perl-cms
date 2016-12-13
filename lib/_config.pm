@@ -1,6 +1,9 @@
 package _config;
-sub db {
-    return DBI->connect(
+use DBI;
+
+sub new { bless @_[1] || {}, shift }
+sub dbh {
+    return $self->{dbh} ||= DBI->connect(
         "DBI:mysql:database=jlabranc_kad;
         host=localhost",
         "jlabranc_kad2",
