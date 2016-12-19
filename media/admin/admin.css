@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: "Source Sans Pro", sans-serif;
+}
+nav {
+    width: 300px;
+    background: #34495e;
+    color: white;
+    position: fixed;
+    height: 100%;
+}
+nav h1 {
+    padding-left: 25px;
+}
+nav a {
+    color: white;
+    font-size: 18px;
+    display: block;
+    padding: 10px 0 10px 25px;
+    text-decoration: none;
+    border-bottom: 1px solid #2c3e50;
+    transition: all .2s ease-in-out;
+}
+nav a:first-of-type{
+    border-top: 1px solid #2c3e50;
+}
+nav a:hover, nav .active {
+    background-color: #2c3e50;
+}
+nav .active {
+    border-bottom: 1px solid #4A6075;
+}
+.portal {
+    width: calc(100% - 300px);
+    margin-left: 300px;
+}
+
+main {
+    padding-left: 25px;
+}
+h1 {
+    margin: 0;
+    padding: 20px 0 30px;
+    font-weight: 400;
+}
+h2 {
+    font-weight: 400;
+    margin: 0 0 20px;
+}
+form {
+    max-width: 600px;
+    padding: 20px;
+}
+.rows {
+    margin-bottom: 10px;
+}
+fieldset {
+    margin: 0;
+    padding: 10px 5px;
+    border: 1px solid #ccc;
+    background: #eee;
+    transition: all .2s ease-in-out;
+}
+fieldset:first-of-type {
+    border-radius: 3px 3px 0 0;
+}
+fieldset:last-of-type {
+    border-radius: 0 0 3px 3px;
+}
+fieldset:after {
+    content: " ";
+    clear: both;
+}
+label {
+    display: block;
+    width: 46%;
+    float: left;
+    padding: 0 10px;
+    line-height: 1.3em;
+}
+input, select {
+    width: 100%;
+    padding: 4px 4px 2px;
+}
+.delete {
+    display: block;
+    width: 4%;
+    float: left;
+    font-size: 21px;
+    margin-top: 23px;
+    color: #e74c3c;
+}
+form .inactive {
+    display: none;
+}
+button, label {
+    cursor: pointer;
+}
+.btn-primary {
+    background: #1abc9c;
+    border-width: 0px 1px 2px 0px;
+    border-color: #16a085;
+    border-style: solid;
+    color: white;
+    padding: 5px 15px;
+    transition: all .2s ease-in-out;
+}
+.btn-primary:hover {
+    background: #16a085;
+    border-color: #1abc9c;
+}
+.btn, .btn-secondary {
+    background: #95a5a6;
+    border-width: 0px 1px 2px 0px;
+    border-color: #7f8c8d;
+    border-style: solid;
+    color: white;
+    padding: 5px 15px;
+    transition: all .2s ease-in-out;
+}
+.btn:hover, .btn-secondary:hover {
+     background: #7f8c8d;
+     border-color: #95a5a6; 
+}

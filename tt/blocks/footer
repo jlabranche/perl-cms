@@ -1,2 +1,6 @@
+    <footer>
+        <hr>
+        <p>PERL CMS: Coming sometime [% completion_date %]<p>
+    </footer>
     </body>
 </html>
