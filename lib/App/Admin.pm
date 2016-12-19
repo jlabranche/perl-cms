@@ -25,6 +25,15 @@ sub ajax_run_step {
     my $action = $form->{'action'};
     my ($validation_error, $sub);
 
+    #if form elements that end in [] are not an array, make them so.
+    for my $element (keys %$form) {
+        if ($element =~ /\[\]$/) {
+            if (ref $form->{$element} ne 'ARRAY') {
+                $form->{$element} = [$form->{$element}];
+            }
+        }
+    }
+
     $form->{'data'} = clone($form);
     for my $input (keys %{$form->{'data'}}) {
         if ($input !~ /\[\]/ || $input eq 'type[]') {

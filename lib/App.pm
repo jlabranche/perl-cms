@@ -5,6 +5,7 @@ use strict;
 use _config;
 
 use base qw( CGI::Ex::App );
+use FindBin qw($Bin);
 use CGI::Ex::Dump qw(debug);
 
 sub template_path { '../tt' }
@@ -13,6 +14,7 @@ sub ext_print     { 'html' }
 
 sub config { shift->{'_config'} ||= _config->new() }
 sub dbh    { shift->config->dbh }
+sub base   { shift->config->base }
 
 sub hash_common {
     my $self = shift;
@@ -26,9 +28,10 @@ sub hash_common {
     my $completion_date = $year + 1;
 
     return {
-        nav_items => $nav_items,
-        site_title => $site_title,
-        completion_date => $completion_date
+        nav_items       => $nav_items,
+        site_title      => $site_title,
+        completion_date => $completion_date,
+        base            => $self->base,
     };
 }
 
