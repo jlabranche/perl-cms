@@ -4,4 +4,4 @@ CREATE TABLE `nav_items` (
  `href` varchar(511) DEFAULT NULL,
  `position` int(6) NOT NULL,
  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1
+)
