@@ -1,4 +1,4 @@
-[% PROCESS blocks/admin-header %]
+[% PROCESS blocks/admin/header %]
 <main>
     <h1>Dashboard | [% site_title %]</h1>
     <form action="ajax" method="post">
@@ -16,7 +16,9 @@
                     </label>
                     <input type="hidden" name="id" value="[% nav_item.id %]">
                     <input type="hidden" name="type" value="update">
+                    <input type="hidden" name="position" value="[% nav_item.position %]">
                     <i class="fa fa-times-circle delete" aria-hidden="true"></i>
+                    <i class="fa fa-arrows-v" aria-hidden="true"></i>
                 </fieldset>
             [% END %]
         </div>
@@ -25,4 +27,4 @@
     </form>
 </main>
 [% js_validation %]
-[% PROCESS blocks/admin-footer %]
+[% PROCESS blocks/admin/footer %]

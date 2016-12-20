@@ -61,7 +61,6 @@ fieldset {
     padding: 10px 5px;
     border: 1px solid #ccc;
     background: #eee;
-    transition: all .2s ease-in-out;
 }
 fieldset:first-of-type {
     border-radius: 3px 3px 0 0;
@@ -84,12 +83,15 @@ input, select {
     width: 100%;
     padding: 4px 4px 2px;
 }
-.delete {
+fieldset .fa {
     display: block;
     width: 4%;
     float: left;
     font-size: 21px;
     margin-top: 23px;
+    text-align: center;
+}
+.fa.delete {
     color: #e74c3c;
 }
 form .inactive {
