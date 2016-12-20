@@ -5,5 +5,5 @@ CREATE TABLE `session` (
  `expiration` DATE NOT NULL,
  `user_id` VARCHAR(11) NOT NULL,
  PRIMARY KEY (`id`),
- KEY (user_id) REFERENCES users(id)
+ FOREIGN KEY (user_id) REFERENCES users(id)
 );
