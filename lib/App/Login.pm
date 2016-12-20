@@ -113,10 +113,10 @@ sub forgot {
             my $b__dir = (-d '/home2/jlabranc/perl'?'/home2/jlabranc/perl':( getpwuid($>) )[7].'/perl');
             unshift @INC,$b__dir.'5/lib/perl5',$b__dir.'5/lib/perl5/x86_64-linux-thread-multi',map { $b__dir . $_ } @INC;
         }
-        use Email::Sender::Simple qw(sendmail);
-        use Email::Sender::Transport::SMTP ();
-        use Email::Simple ();
-        use Email::Simple::Creator ();
+        require Email::Sender::Simple;# qw(sendmail);
+        require Email::Sender::Transport::SMTP;
+        require Email::Simple;
+        require Email::Simple::Creator;
         my $to = $form->{email};
         my $new_password = $self->random_password;
         $self->change_password($form->{user},$new_password);
