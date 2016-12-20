@@ -22,6 +22,8 @@ if (opendir(my $dh, "$Bin/../main")) {
                 eval{$dbh->do($sql)};
                 if ($@) {
                     print "Error: $file : $@";
+                } else {
+                    print "Installed $file\n";
                 }
                 close($fh);
             }
