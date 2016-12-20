@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="[% base %]/media/themes/[% site_options.theme %]/main.css">
     </head>
     <body>
     [%# nav_bar %]

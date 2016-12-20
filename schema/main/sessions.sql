@@ -1,4 +1,4 @@
-CREATE TABLE `session` (
+CREATE TABLE `sessions` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `session` VARCHAR(126) DEFAULT NULL,
  `expired` TINYINT(1) DEFAULT NULL,
