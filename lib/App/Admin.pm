@@ -155,16 +155,13 @@ sub _ajax_nav_items_hash_validation {
         "group no_alert"   => 1,
         'name[]' => {
             max_values => 99,
-            required => 1,
-            max_len => 20,
         },
         'href[]' => {
             max_values => 99,
-            required => 1,
         },
         'type[]' => {
             max_values => 99,
-            required => 1,
+            required   => 1,
         },
     };
 }
