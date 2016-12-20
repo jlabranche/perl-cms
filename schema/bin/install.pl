@@ -18,7 +18,7 @@ if (opendir(my $dh, "$Bin/../main")) {
         if ($file =~ /\.sql$/) {
             if (open(my $fh, "<", "$Bin/../main/$file")) {
                 my $sql = <$fh>;
-                my $dbh = _config->dbh;
+                my $dbh = _config::dbh;
                 eval{$dbh->do($sql)};
                 if ($@) {
                     print "Error: $file : $@";
