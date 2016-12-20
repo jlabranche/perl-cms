@@ -22,8 +22,9 @@ $(document).ready(function() {
             '<fieldset>' +
                 '<label>Display Name<input type="text" name="name" value=""></label>' +
                 '<label>Link Address<input type="text" name="href" value=""></label>' +
+                '<input type="hidden" name="id" value="0">' +
                 '<input type="hidden" name="type" value="new">' +
-                '<input type="hidden" name="position" value="">' +
+                '<input type="hidden" name="position" value="99">' +
                 '<i class="fa fa-times-circle delete" aria-hidden="true"></i>' +
                 '<i class="fa fa-arrows-v" aria-hidden="true"></i>' +
             '</fieldset>';
@@ -61,17 +62,8 @@ $(document).ready(function() {
     // Delete something from the navigation
     $(".delete").click(function(e){
         e.preventDefault();
-        data = {};
-        data.id = $(this).parent().find("[name=id]").val();
-        data.action="nav_items";
-        data.type = [];
-        data.type[0] = "delete";
-        $.ajax({
-            url: 'admin/ajax',
-            method: "POST",
-            data: data,
-        });
-        $(this).parent().remove();
+        $(this).parent().find("[name=type]").val("delete");
+        $(this).parent().addClass("deleted");
     });
 });
 

@@ -15,23 +15,36 @@ sub ext_print     { 'html' }
 sub config { shift->{'_config'} ||= _config->new() }
 sub dbh    { shift->config->dbh }
 sub base   { shift->config->base }
+sub site_options {
+    my $self = shift;
+    my $select = {
+        site_options => qq{
+            SELECT *
+              FROM site_options
+        },
+    };
+    return $self->dbh->selectall_arrayref($select->{'site_options'}, { Slice => {} } );
+}
+sub nav_items {
+    my $self = shift;
+    my $select = {
+        nav_items => qq{
+            SELECT *
+              FROM nav_items
+          ORDER BY position
+        },
+    };
+    return $self->dbh->selectall_arrayref($select->{'nav_items'}, { Slice => {} } );
+}
+
 
 sub hash_common {
     my $self = shift;
 
-    my $nav_items = $self->dbh->selectall_arrayref("SELECT * FROM nav_items ORDER BY position", { Slice => {} }, );
-
-    my $site_title = "My Site";
-    
-    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime(time);
-    $year += 1900;
-    my $completion_date = $year + 1;
-
     return {
-        nav_items       => $nav_items,
-        site_title      => $site_title,
-        completion_date => $completion_date,
         base            => $self->base,
+        nav_items       => $self->nav_items,
+        site_options    => $self->site_options,
     };
 }
 

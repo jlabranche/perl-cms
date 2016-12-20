@@ -89,10 +89,16 @@ sub modify_table {
     my $table = $form->{'action'};
     my $types;
     
-    my %create_keys = %$data;
-    delete $create_keys{'id'};
-    my $create_query = join(",", map("?", keys %create_keys));
-    my $create_rows = join(",", keys %create_keys);
+    my $create_query;
+    my $create_rows;
+    for my $key (keys %$data) {
+        if ($key ne 'id') {
+            $create_rows  .= "," if defined $create_rows;
+            $create_rows  .= $key;
+            $create_query .= "," if defined $create_query;
+            $create_query .= "?";
+        }
+    }
 
     my $update_query;
     for my $key (keys %$data) {
@@ -106,6 +112,8 @@ sub modify_table {
     for my $type (@{$form->{'type[]'}}) {
         if ($type eq 'update') {
             push(@{$types->{'update'}}, $i++);
+        } elsif ($type eq 'delete') {
+            push(@{$types->{'delete'}}, $i++);
         } else {
             push(@{$types->{'create'}}, $i++);
         }
@@ -129,23 +137,30 @@ sub modify_table {
         },
     };
 
+    my $update;
     for my $type (keys %$types) {
         for my $i (@{$types->{$type}}) {
             my $capture;
             for my $key (keys %$data) {
-                if ($type eq 'update' ||
-                        ($type eq 'create' && $key ne 'id') ||
-                        $type eq 'delete' && $key eq 'id') {
+                if ($type eq 'update'
+                        || ($type eq 'delete' && $key eq 'id') 
+                        || ($type eq 'create' && $key ne 'id')) {
                     push( @$capture, $data->{$key}->[$i] );
                 }
             }
-            my $sth = $self->dbh->prepare($sql->{$type});
-            $sth->execute(@$capture);
+            $update->{$type} = 0;
+            eval {
+                debug $sql->{$type};
+                debug $capture;
+                my $sth = $self->dbh->prepare($sql->{$type});
+                $sth->execute(@$capture);
+                $update->{$type} = 1;
+            };
         }
     }
 
     return {
-        sql  => $sql->{'update'},
+        success => $update,
     }
 }
 sub _ajax_nav_items_hash_validation {
@@ -153,6 +168,9 @@ sub _ajax_nav_items_hash_validation {
     return {
         "group no_confirm" => 1,
         "group no_alert"   => 1,
+        'id[]' => {
+            max_values => 99,
+        },
         'name[]' => {
             max_values => 99,
         },
