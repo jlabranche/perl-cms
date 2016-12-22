@@ -1,1 +1,1 @@
-INSERT INTO pages (name, href, content) VALUES ("Page 1", "test", "Hello World!!");
+INSERT INTO `pages` VALUES (1,'First Page','first',NULL,'Hello World!',0,0,'2016-12-22 16:09:42',NULL,'2016-12-22 16:09:42');

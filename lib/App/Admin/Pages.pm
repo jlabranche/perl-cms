@@ -12,9 +12,18 @@ sub pages_hash_swap {
     my $select  = {
         pages => qq{
             SELECT *
-              FROM pages
+              FROM pages 
+              JOIN page_status 
+                ON pages.page_status_id=page_status.id
+          ORDER BY pages.title
         },
     };
+    #$select = {
+    #    pages => qq{
+    #        SELECT *
+    #          FROM page_status
+    #      }
+    #};
     if (defined $page_id) {
         $select->{'pages'} .= qq{
             WHERE id = ?

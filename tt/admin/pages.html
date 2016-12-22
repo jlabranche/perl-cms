@@ -7,9 +7,19 @@
     <tr>
         <th>Page Title</th>
         <th>href</th>
+        <th>Status</th>
+        <th>Date Modified</th>
+        <th>Author</th>
         <th>Edit</th>
-        <th></th>
-    </tr> 
+    </tr>
+    [% FOR page IN pages %]
+    <tr>
+        <td>[% page.name %]</td>
+        <td>[% page.href %]</td>
+        <td></td>
+        <td></td>
+    </tr>
+    [% END %]
 </table>
 
 [% js_validation %]
