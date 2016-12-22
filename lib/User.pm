@@ -9,31 +9,29 @@ use _config;
 
 sub config { shift->{'_config'} ||= _config->new }
 
-
 sub user {
     my $self = shift;
-    return $self->{'user'} || $self->_session;
+    return $self->{'user'} ||= $self->_session;
 }
 sub _session {
     my $self = shift;
-    my $db = $self->config->dbh;
+    my $dbh = $self->config->dbh;
     my $session = $self->cgix->cookies->{'login'};
     my $select = {
-        session => qq{
+        sessions => qq{
             SELECT u.*
-              FROM session s
-              JOIN users u ON u.username = s.user_id
+              FROM sessions s
+              JOIN users u ON u.user_name = s.user_id
              WHERE s.expired = 0
                AND s.expiration > NOW()
                AND s.session = ?
         },
     };
-    my $user = $db->selectrow_hashref($select->{'session'}, {}, $session);
-    if (!$user && $ENV{PATH_INFO} !~ /admin.*/) {
-        $self->cgix->location_bounce("/".$self->config->base."/login");
+    my $user = $dbh->selectrow_hashref($select->{'sessions'}, {}, $session);
+    if ($user) {
+      return $self->{'user'} = $user;
     }
-    $self->{'user'} = $user;
-    return $user;
+    return {};
 }
 
 sub login {

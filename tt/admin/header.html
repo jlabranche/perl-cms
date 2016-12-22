@@ -1,0 +1,29 @@
+[% PROCESS layouts/admin/base %]
+[% BLOCK main %]
+    <form action="ajax" method="post">
+        <h2>Navigation Menu Items</h2>
+        <div class="rows">
+            [% FOREACH nav_item IN nav_items %]
+                <fieldset>
+                    <label>Display Name<br><input type="text" name="name" value="[% nav_item.name %]"></label>
+                    <label>Link Address<br><input type="text" name="href" value="[% nav_item.href %]"[% IF nav_item.href.search('^\d+$') %] class="inactive"[% END %]>
+                        <select name="href"[% IF !nav_item.href.search('^\d+$') %] class="inactive"[% END %]>
+                            [% FOREACH page IN pages -%]
+                            <option>[% page %]</option>
+                            [% END %]
+                        </select>
+                    </label>
+                    <input type="hidden" name="id" value="[% nav_item.id %]">
+                    <input type="hidden" name="type" value="update">
+                    <input type="hidden" name="position" value="[% nav_item.position %]">
+                    <i class="fa fa-times-circle delete" aria-hidden="true"></i>
+                    <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                    <div class="glass"><i class="fa fa-undo" aria-hidden="true"></i></div>
+                </fieldset>
+            [% END %]
+        </div>
+        <button class="add-row btn"><i class="fa fa-plus" aria-hidden="true"></i> Add New Item</button>
+        <button action="nav_items" class="btn-primary js-submit"><i class="fa fa-check" aria-hidden="true"></i> Submit Changes</button>
+    </form>
+[% js_validation %]
+[% END %]

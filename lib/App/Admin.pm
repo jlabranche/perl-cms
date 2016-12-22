@@ -7,12 +7,22 @@ use CGI::Ex::Dump qw(debug);
 use Clone 'clone';
 use JSON;
 
-sub main_hash_swap {
+sub pre_step {
+    my $self = shift;
+    if (!$self->is_admin) {
+        $self->cgix->location_bounce($self->config->base."/login");
+        $self->exit_nav_loop;
+    }
+}
+
+sub hash_swap {
     my $self = shift;
     return {
-        #page_name => "admin"
+        is_admin => $self->is_admin,
     };
 }
+
+sub is_admin { shift->user->{'rights'} }
 
 sub post_navigate {
     # show what happened
@@ -20,6 +30,7 @@ sub post_navigate {
 }
 sub ajax_run_step {
     my $self = shift;
+    #return 1 if !$self->is_admin;
     my $form = $self->form;
     my $json   = JSON->new->utf8(1);
     my $action = $form->{'action'};
@@ -150,8 +161,6 @@ sub modify_table {
             }
             $update->{$type} = 0;
             eval {
-                debug $sql->{$type};
-                debug $capture;
                 my $sth = $self->dbh->prepare($sql->{$type});
                 $sth->execute(@$capture);
                 $update->{$type} = 1;

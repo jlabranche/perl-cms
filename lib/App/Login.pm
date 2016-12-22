@@ -45,7 +45,14 @@ sub login {
     my $user = $form->{user_name};
     my $pass = $self->pass($form->{password});
     my $id   = sha256_hex(join(':', $self->config->salt,$user,$pass,time));
-    my $insert_sth = $dbh->prepare("INSERT INTO session (session, expired, expiration, user_id) VALUES (?, 0, NOW() + INTERVAL 1 DAY, ?)");
+    my $insert = {
+        sessions => qq{
+            INSERT INTO sessions
+                        (session, expired, expiration, user_id)
+                 VALUES (?, 0, NOW() + INTERVAL 1 DAY, ?)
+        },
+    };
+    my $insert_sth = $dbh->prepare($insert->{'sessions'});
     $insert_sth->execute($id, $user);
     $self->cgix->set_cookie({
         -name    => "login",
@@ -67,7 +74,14 @@ sub logout {
     my $form    = $self->form;
     my $session = $self->cgix->cookies->{'login'};
     my $dbh     = $self->dbh;
-    my $sth     = $dbh->prepare("UPDATE session set expired=1 WHERE session = ?");
+    my $update  = {
+        sessions => qq{
+            UPDATE sessions 
+               SET expired = 1
+             WHERE session = ?
+        },
+    };
+    my $sth = $dbh->prepare($update->{'sessions'});
     $sth->execute($self->pass($session));
     $self->cgix->set_cookie({
         -name    => "login",

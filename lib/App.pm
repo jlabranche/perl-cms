@@ -3,6 +3,7 @@ use warnings;
 use strict;
 
 use _config;
+use User;
 
 use base qw( CGI::Ex::App );
 use FindBin qw($Bin);
@@ -15,6 +16,8 @@ sub ext_print     { 'html' }
 sub config { shift->{'_config'} ||= _config->new() }
 sub dbh    { shift->config->dbh }
 sub base   { shift->config->base }
+sub user   { shift->{'user'} ||= User->new->user }
+
 sub site_options {
     my $self = shift;
     my $select = {
@@ -23,7 +26,12 @@ sub site_options {
               FROM site_options
         },
     };
-    return $self->dbh->selectall_arrayref($select->{'site_options'}, { Slice => {} } );
+    my $options_array = $self->dbh->selectall_arrayref($select->{'site_options'}, { Slice => {} } );
+    my $site_options;
+    for my $so (@$options_array) {
+        $site_options->{$so->{'name'}} = $so->{'value'};
+    }
+    return $site_options;
 }
 sub nav_items {
     my $self = shift;
@@ -40,11 +48,13 @@ sub nav_items {
 
 sub hash_common {
     my $self = shift;
-
     return {
+        step            => $self->form->{'step'} || 'main',
         base            => $self->base,
         nav_items       => $self->nav_items,
         site_options    => $self->site_options,
+        user            => $self->user,
+        request_uri     => $ENV{'REQUEST_URI'},
     };
 }
 

@@ -1,0 +1,7 @@
+[% PROCESS blocks/admin/header %]
+<main>
+[% IF step eq 'main'; step = "dashboard"; END %]
+<h1>[% step.ucfirst %] | [% site_options.title %]</h1>
+[% PROCESS main %]
+</main>
+[% PROCESS blocks/admin/footer %]

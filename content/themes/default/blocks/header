@@ -1,0 +1,17 @@
+<!doctype html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="[% base %]/media/themes/[% site_options.theme %]/main.css">
+    </head>
+    <body>
+    [%# nav_bar %]
+    <header>
+        <h1>[% site_title %]</h1>
+        <nav>
+            <ul>
+                [% FOREACH nav_item IN nav_items %] 
+                    <li><a href="[% nav_item.href %]">[% nav_item.name %]</a></li>
+                [% END %]
+            </ul>
+        </nav>
+    </header>
