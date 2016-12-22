@@ -46,14 +46,6 @@ sub nav_items {
     return $self->dbh->selectall_arrayref($select->{'nav_items'}, { Slice => {} } );
 }
 
-sub cms_info {
-    my $self = shift;
-    return {
-        base => $self->base,
-    }
-}
-
-
 sub hash_common {
     my $self = shift;
     return {
@@ -62,7 +54,6 @@ sub hash_common {
         nav_items       => $self->nav_items,
         site_options    => $self->site_options,
         user            => $self->user,
-        cmsinfo         => $self->cms_info,
     };
 }
 
