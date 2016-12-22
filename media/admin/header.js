@@ -48,7 +48,7 @@ $(document).ready(function() {
         });
         data.action = $(this).attr("action");
         $.ajax({
-            url: 'admin/ajax',
+            url: cmsinfo.base+'/admin/ajax',
             method: "POST",
             data: data,
         });
