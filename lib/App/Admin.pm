@@ -7,6 +7,9 @@ use CGI::Ex::Dump qw(debug);
 use Clone 'clone';
 use JSON;
 
+sub allow_morph { {pages => 2} }
+sub pages_morph_package { 'App::Admin::Pages' }
+
 sub pre_step {
     my $self = shift;
     if (!$self->is_admin) {

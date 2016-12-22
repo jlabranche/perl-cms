@@ -1,0 +1,1 @@
+INSERT INTO pages (name, href, content) VALUES ("Page 1", "test", "Hello World!!");

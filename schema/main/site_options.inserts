@@ -1,2 +1,2 @@
-INSERT INTO `site_options` (`name`, `value`) VALUES ("title", "Site Title");
-INSERT INTO `site_options` (`name`, `value`) VALUES ("theme", "default");
+INSERT INTO site_options (name, value) VALUES ('title', 'Site Title');
+INSERT INTO site_options (name, value) VALUES ('theme', 'default');
