@@ -1,12 +1,10 @@
-[% PROCESS blocks/header %]
-hello I'm a login page
+[% PROCESS blocks/login/header %]
 <form method="POST">
-    <label>Username <input type="text" name="user_name"></label>
-    <label>Password <input type="password" name="password"></label>
-    <button type="submit">Submit</button>
+    <input type="text" name="user_name" placeholder="Username">
+    <input type="password" name="password" placeholder="Password">
+    <button type="submit" class="btn-primary">Log In <i class="fa fa-sign-in" aria-hidden="true"></i></button>
     <span class="error" id="failed_login_error">[% failed_login_error %]</span>
 </form>
 <br>
 [% js_validate %]
-[% foo %]
-
+[% PROCESS blocks/login/footer %]

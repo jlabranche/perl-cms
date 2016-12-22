@@ -1,0 +1,103 @@
+@primary: #34495e;
+@primary-darker: #2c3e50;
+@primary-lighter: #4A6075;
+@offwhite: #ecf0f1;
+@offwhite-darker: #bdc3c7;
+@success: #2ecc71;
+@success-darker: #27ae60;
+@warning: #e74c3c;
+
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: "Source Sans Pro", sans-serif;
+    color: #333;
+    background: url(https://source.unsplash.com/category/nature/1600x900) center center fixed;
+    background-size: cover;
+}
+h1 {
+    font-weight: 400;
+    margin: 0 0 10px;
+    border-bottom: 1px solid #333;
+    line-height: 25px;
+}
+form {
+    max-width: 270px;
+    padding: 20px 30px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0,0,0,.7);
+    border: 1px solid black;
+    border-radius: 10px;
+}
+label {
+    display: block;
+    line-height: 1.3em;
+    padding-bottom: 5px;
+}
+input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #f0f0f0;
+    outline: none;
+    margin-bottom: 10px;
+    background: none;
+    color: #f0f0f0;
+}
+::-webkit-input-placeholder {
+   color: #f0f0f0;
+}
+:-moz-placeholder { /* Firefox 18- */
+   color: #f0f0f0;  
+}
+::-moz-placeholder {  /* Firefox 19+ */
+   color: #f0f0f0;  
+}
+:-ms-input-placeholder {  
+   color: #f0f0f0;  
+}
+.fa {
+    position: absolute;
+    right: 6px;
+    font-size: 26px;
+    top: 2px;
+}
+button {
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    position: relative;
+    margin-top: 10px;
+}
+.btn-primary {
+    background: @success;
+    border-width: 0px 1px 2px 0px;
+    border-color: @success-darker;
+    border-style: solid;
+    color: white;
+    padding: 5px 15px;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        background: @success-darker;
+        border-color: @success;
+    }
+}
+.btn, .btn-secondary {
+    background: #95a5a6;
+    border-width: 0px 1px 2px 0px;
+    border-color: #7f8c8d;
+    border-style: solid;
+    color: white;
+    padding: 5px 15px;
+    transition: all .2s ease-in-out;
+
+    &:hover {
+         background: #7f8c8d;
+         border-color: #95a5a6; 
+    }
+}
