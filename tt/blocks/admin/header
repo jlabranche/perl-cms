@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="http://74.220.218.30/perl-cms/">
+    <base href="[% base %]">
 
     <meta charset="UTF-8">
     <title>Dashboard | [% site_options.title %]</title>

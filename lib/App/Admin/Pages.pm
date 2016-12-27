@@ -5,6 +5,17 @@ use strict;
 use base qw{App::Admin};
 use CGI::Ex::Dump qw(debug);
 
+sub pages_pre_step {
+    my $self = shift;
+    if($self->form->{'page_id'} eq 'new') {
+        $self->dbh->do(qq{INSERT INTO pages (title) VALUES ('New Page')});
+        my @pages = $self->dbh->selectall_arrayref(qq{SELECT id, date_created FROM pages ORDER BY date_created DESC});
+        $self->cgix->location_bounce("admin/pages/" + $pages[0][0][0]);
+        $self->exit_nav_loop;
+    }
+    return 0;
+}
+
 sub pages_hash_swap {
     my $self    = shift;
     my $form    = $self->form;
@@ -43,7 +54,7 @@ sub pages_hash_swap {
 sub path_info_map {
     my $self = shift;
     return [
-        [qr{^/\w+/(\d+)$}, 'page_id'],
+        [qr{^/\w+/(\w+)$}, 'page_id'],
     ];
 }
 

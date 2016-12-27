@@ -25,7 +25,6 @@ sub dbh {
 }
 sub salt { 'nurnucnu[cy [ [ y [y1[ 8x1[ y4123[h  uqr [uq  py&BN*( IOU{ ;eh r h1;h DFp qdwfashdp by13413$!@#$&#($J#&KCBFDFL!' }
 sub base {
-    # This shouldn't be necessary anymore, <base> is used instead to correct relative pathing
     my $override = _config::override::init;
     return $override->{'base'};
 }
