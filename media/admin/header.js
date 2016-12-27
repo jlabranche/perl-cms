@@ -35,9 +35,9 @@ $(document).ready(function() {
     }
 
     // Submit Navigation Menu changes
-    $(".js-submit").click(function(e){
+    $("[action=nav_items]").click(function(e){
         e.preventDefault();
-        data = {};
+        var data = {};
         $.each($("input"), function(){
             if (!$(this).hasClass("inactive")) {
                 if (data[$(this).attr("name")] === undefined) {

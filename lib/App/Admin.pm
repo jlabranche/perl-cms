@@ -7,8 +7,9 @@ use CGI::Ex::Dump qw(debug);
 use Clone 'clone';
 use JSON;
 
-sub allow_morph { {pages => 2} }
+sub allow_morph { 1 }
 sub pages_morph_package { 'App::Admin::Pages' }
+sub users_morph_package { 'App::Admin::Users' }
 
 sub pre_step {
     my $self = shift;
@@ -91,6 +92,12 @@ sub ajax_run_step {
 }
 
 sub _ajax_nav_items {
+    my $self = shift;
+    my $form = $self->form;
+    return $self->modify_table;
+}
+
+sub _ajax_pages {
     my $self = shift;
     my $form = $self->form;
     return $self->modify_table;

@@ -1,0 +1,2 @@
+INSERT INTO users (user_name, rights) VALUES ('PERL CMS', 1);
+UPDATE users SET id=0 where user_name='PERL CMS';

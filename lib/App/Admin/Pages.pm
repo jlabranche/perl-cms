@@ -11,11 +11,12 @@ sub pages_hash_swap {
     my $page_id = $form->{'page_id'};
     my $select  = {
         pages => qq{
-            SELECT *
-              FROM pages 
-              JOIN page_status 
-                ON pages.page_status_id=page_status.id
-          ORDER BY pages.title
+            SELECT p.id, p.title, p.href, p.content, u.user_name as author, p.date_modified, p.date_published, ps.name as status
+              FROM pages p
+              JOIN page_status ps
+                ON p.page_status_id=ps.id
+              JOIN users u 
+                ON p.author_id=u.id 
         },
     };
     #$select = {
@@ -26,9 +27,14 @@ sub pages_hash_swap {
     #};
     if (defined $page_id) {
         $select->{'pages'} .= qq{
-            WHERE id = ?
+            WHERE p.id = ?
         };
+    } else {
+        $select->{'pages'} .= qq{
+            ORDER BY p.title 
+        }
     }
+
     return {
         pages => $self->dbh->selectall_arrayref($select->{'pages'}, { Slice => {} }, (defined $page_id ? $page_id : ()) ),
     }
@@ -39,6 +45,11 @@ sub path_info_map {
     return [
         [qr{^/\w+/(\d+)$}, 'page_id'],
     ];
+}
+
+sub name_step {
+    return 'individual-page' if defined shift->form->{'page_id'};
+    return 'pages';
 }
 
 1;

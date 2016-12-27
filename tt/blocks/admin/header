@@ -16,12 +16,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.min.js"></script>
 </head>
 <body class="[% page_title %]">
-    <nav>
+    <header>
         <h1>PERL CMS</h1>
-        <a href="[% base %]/admin">Dashboard</a>
-        [% FOR page IN ["Header", "Footer", "Site", "Pages", "Users"] %]
-            <a href="[% base~"/admin/"~page.lc %]">[% page %]</a>
-        [% END %]
-    </nav>
-    <div class="portal">
+        <i class="fa fa-bars hamburger-menu" aria-hidden="true"></i>
+        <nav>
+            <a href="[% base %]/admin">Dashboard</a>
+            [% FOR page IN ["Header", "Footer", "Site", "Pages", "Users"] %]
+                <a href="[% base~"/admin/"~page.lc %]">[% page %]</a>
+            [% END %]
+        </nav>
+    </header>
  

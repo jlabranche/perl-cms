@@ -14,15 +14,24 @@ body {
     font-family: "Source Sans Pro", sans-serif;
     color: #333;
 }
-nav {
-    width: 300px;
+header {
     background: @primary;
     color: white;
     position: fixed;
-    height: 100%;
+    width: 100%;
+    z-index: 10;
 
     h1 {
         padding-left: 25px;
+    }
+    .hamburger-menu {
+        position: fixed;
+        font-size: 26px;
+        right: 15px;
+        top: 13px;
+    }
+    nav {
+        display: none;
     }
     a {
         color: white;
@@ -44,18 +53,15 @@ nav {
         }
     }
 }
-.portal {
-    //width: calc(100% - 300px);
-    margin-left: 300px;
-    main {
-        padding-left: 25px;
-    }
+main {
+    padding: 60px 25px 0;
 }
 
 h1 {
     margin: 0;
-    padding: 20px 0 30px;
     font-weight: 400;
+    padding: 10px 0 15px;
+    font-size: 26px;
 }
 h2 {
     font-weight: 400;
@@ -63,14 +69,13 @@ h2 {
 }
 form {
     max-width: 600px;
-    padding: 20px;
 
      .inactive {
         display: none;
     }
-}
-.rows {
-    margin-bottom: 10px;
+    .rows {
+        margin-bottom: 10px;
+    }
 }
 fieldset {
     margin: 0;
@@ -91,7 +96,7 @@ fieldset {
     }
     >.fa {
         display: block;
-        width: 4%;
+        width: 6%;
         float: left;
         font-size: 21px;
         margin-top: 23px;
@@ -121,7 +126,7 @@ fieldset {
 }
 label {
     display: block;
-    width: 46%;
+    width: 44%;
     float: left;
     padding: 0 10px;
     line-height: 1.3em;
@@ -133,19 +138,24 @@ input, select {
 button, label {
     cursor: pointer;
 }
-.btn-primary {
-    background: @success;
-    border-width: 0px 1px 2px 0px;
-    border-color: @success-darker;
-    border-style: solid;
-    color: white;
-    padding: 5px 15px;
-    transition: all .2s ease-in-out;
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid @offwhite-darker;
 
-    &:hover {
-        background: @success-darker;
-        border-color: @success;
+    th {
+        text-align: left;
     }
+    th, td {
+        padding: 10px 10px 5px;
+    }
+    tr:nth-child(odd) {
+        background-color: @offwhite;
+    }
+}
+textarea {
+    width: 100%;
+    min-height: 200px;
 }
 .btn, .btn-secondary {
     background: #95a5a6;
@@ -155,9 +165,50 @@ button, label {
     color: white;
     padding: 5px 15px;
     transition: all .2s ease-in-out;
+    text-decoration: none;
+    font-size: 100%;
+    line-height: 1.15;
+    display: inline-block;
 
     &:hover {
          background: #7f8c8d;
          border-color: #95a5a6; 
+    }
+}
+.btn-primary {
+    background: @success;
+    border-color: @success-darker;
+
+    &:hover {
+        background: @success-darker;
+        border-color: @success;
+    }
+}
+
+@media screen and (min-width : 768px) {
+    header {
+        height: 100%;
+        width: 300px;
+    }
+    nav {
+        display: block !important;
+        /*
+            Before you give me grief, this is to reset whatever JQuery slide
+            status the hamburger menu has created when the window is resized
+        */
+    }
+    main {
+        margin-left: 300px;
+        padding: 0 25px;
+    }
+    h1 {
+        padding: 20px 0 30px;
+        font-size: 32px;
+    }
+    label {
+        width: 46%;
+    }
+    fieldset>.fa {
+        width: 4%;
     }
 }

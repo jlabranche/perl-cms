@@ -1,0 +1,11 @@
+[% PROCESS layouts/admin/base %]
+[% BLOCK main %]
+
+<form action="ajax" method="post">
+    <textarea name="content">[% pages.0.content %]</textarea>
+    <input name="id" type="hidden" value="[% pages.0.id %]">
+    <button action="submit" class="btn btn-primary">Save Changes</button>
+</form>
+
+[% js_validation %]
+[% END %]
