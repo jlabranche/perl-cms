@@ -14,13 +14,12 @@ $(document).ready(function() {
         data.type[0] = "update";
         data.action = "pages";
 
-        console.log(data);
         $.ajax({
-            url: '../../admin/ajax',
+            url: 'admin/ajax',
             method: "POST",
             data: data,
-        }).always(function(response){
-            console.log(response);
+        }).done(function(){
+            showConfirmation();
         });
     });
 });

@@ -48,9 +48,11 @@ $(document).ready(function() {
         });
         data.action = $(this).attr("action");
         $.ajax({
-            url: '../admin/ajax',
+            url: 'admin/ajax',
             method: "POST",
             data: data,
+        }).done(function(){
+            showConfirmation();
         });
     });
 

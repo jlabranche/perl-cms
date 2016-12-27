@@ -7,6 +7,8 @@
 @success-darker: #27ae60;
 @warning: #e74c3c;
 
+@loginwhite: #f0f0f0;
+
 * {
     box-sizing: border-box;
 }
@@ -18,9 +20,12 @@ body {
 }
 h1 {
     font-weight: 400;
-    margin: 0 0 10px;
-    border-bottom: 1px solid #333;
+    margin: 0 30px 16px;
+    border-bottom: 1px solid @loginwhite;
     line-height: 25px;
+    color: @loginwhite;
+    text-align: center;
+    padding-bottom: 4px;
 }
 form {
     max-width: 270px;
@@ -42,23 +47,23 @@ label {
 input {
     width: 100%;
     border: none;
-    border-bottom: 1px solid #f0f0f0;
+    border-bottom: 1px solid @loginwhite;
     outline: none;
     margin-bottom: 10px;
     background: none;
-    color: #f0f0f0;
+    color: @loginwhite;
 }
 ::-webkit-input-placeholder {
-   color: #f0f0f0;
+   color: @loginwhite;
 }
 :-moz-placeholder { /* Firefox 18- */
-   color: #f0f0f0;  
+   color: @loginwhite;  
 }
 ::-moz-placeholder {  /* Firefox 19+ */
-   color: #f0f0f0;  
+   color: @loginwhite;  
 }
 :-ms-input-placeholder {  
-   color: #f0f0f0;  
+   color: @loginwhite;  
 }
 .fa {
     position: absolute;

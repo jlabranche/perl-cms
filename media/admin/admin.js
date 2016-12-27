@@ -14,4 +14,12 @@ $(document).ready(function() {
         $(this).siblings("nav").slideToggle();
     });
 
+
 });
+
+// Show a confirmation message
+function showConfirmation() {
+    //$(document).ready(function(){
+        $(".confirmation").fadeIn(100).delay(600).fadeOut(1000);
+    //});
+}

@@ -15,7 +15,10 @@ sub ext_print     { 'html' }
 
 sub config { shift->{'_config'} ||= _config->new() }
 sub dbh    { shift->config->dbh }
-sub base   { shift->config->base }
+sub base   {
+    # This shouldn't be necessary anymore, <base> is used instead to correct relative pathing
+    shift->config->base
+}
 sub user   { shift->{'user'} ||= User->new->user }
 
 sub site_options {
