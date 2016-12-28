@@ -163,12 +163,12 @@ sub modify_table {
         for my $i (@{$types->{$type}}) {
             my $capture;
             for my $key (keys %$data) {
-                if ($type eq 'update'
-                        || ($type eq 'delete' && $key eq 'id') 
+                if ($type eq 'update' && $key ne 'id'
                         || ($type eq 'create' && $key ne 'id')) {
                     push( @$capture, $data->{$key}->[$i] );
                 }
             }
+            push( @$capture, $data->{'id'}->[$i] ) if $type eq 'update' && exists $data->{'id'};
             $update->{$type} = 0;
             eval {
                 my $sth = $self->dbh->prepare($sql->{$type});
