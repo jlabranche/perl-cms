@@ -91,17 +91,13 @@ sub ajax_run_step {
     return 1;
 }
 
-sub _ajax_nav_items {
-    my $self = shift;
-    my $form = $self->form;
-    return $self->modify_table;
-}
+sub _ajax_nav_items { return shift->modify_table }
 
-sub _ajax_pages {
-    my $self = shift;
-    my $form = $self->form;
-    return $self->modify_table;
-}
+sub _ajax_pages { return shift->modify_table }
+
+sub _ajax_site_options { return shift->modify_table }
+
+sub _ajax_footer_items { return shift->modify_table }
 
 sub modify_table {
     my $self  = shift;
@@ -168,7 +164,7 @@ sub modify_table {
                     push( @$capture, $data->{$key}->[$i] );
                 }
             }
-            push( @$capture, $data->{'id'}->[$i] ) if $type eq 'update' && exists $data->{'id'};
+            push( @$capture, $data->{'id'}->[$i] ) if $type eq 'update' || $type eq 'delete';
             $update->{$type} = 0;
             eval {
                 my $sth = $self->dbh->prepare($sql->{$type});

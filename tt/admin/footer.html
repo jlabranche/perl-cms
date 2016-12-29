@@ -1,0 +1,38 @@
+[% PROCESS layouts/admin/base %]
+[% BLOCK main %]
+    <form action="ajax" method="post">
+        <h2>Footer Text</h2>
+        <input type="text" name="value" value="[% site_options.footer_text.0 %]">
+        <input type="hidden" name="id" value="[% site_options.footer_text.1 %]">
+        <input type="hidden" name="type" value="update">
+        <button action="site_options" class="btn btn-primary js-submit"><i class="fa fa-check" aria-hidden="true"></i> Update</button>
+        <span class="confirmation">Success!</span>
+    </form>
+    <form action="ajax" method="post">
+        <h2>Footer Menu Items</h2>
+        <div class="rows">
+            [% FOREACH item IN footer_items %]
+                <fieldset>
+                    <label>Display Name<br><input type="text" name="name" value="[% item.name %]"></label>
+                    <label>Link Address<br><input type="text" name="href" value="[% item.href %]"[% IF item.href.search('^\d+$') %] class="inactive"[% END %]>
+                        <select name="href"[% IF !item.href.search('^\d+$') %] class="inactive"[% END %]>
+                            [% FOREACH page IN pages -%]
+                            <option>[% page %]</option>
+                            [% END %]
+                        </select>
+                    </label>
+                    <input type="hidden" name="id" value="[% item.id %]">
+                    <input type="hidden" name="type" value="update">
+                    <input type="hidden" name="position" value="[% item.position %]">
+                    <i class="fa fa-times-circle delete" aria-hidden="true"></i>
+                    <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                    <div class="glass"><i class="fa fa-undo" aria-hidden="true"></i></div>
+                </fieldset>
+            [% END %]
+        </div>
+        <button class="add-row btn"><i class="fa fa-plus" aria-hidden="true"></i> Add New Item</button>
+        <button action="footer_items" class="btn btn-primary js-submit"><i class="fa fa-check" aria-hidden="true"></i> Submit Changes</button>
+        <span class="confirmation">Success!</span>
+    </form>
+[% js_validation %]
+[% END %]

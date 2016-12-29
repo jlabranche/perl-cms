@@ -29,7 +29,8 @@ sub site_options {
     my $options_array = $self->dbh->selectall_arrayref($select->{'site_options'}, { Slice => {} } );
     my $site_options;
     for my $so (@$options_array) {
-        $site_options->{$so->{'name'}} = $so->{'value'};
+        my @pairs = ($so->{'value'}, $so->{'id'});
+        $site_options->{$so->{'name'}} = \@pairs;
     }
     return $site_options;
 }
@@ -46,12 +47,26 @@ sub nav_items {
     return $self->dbh->selectall_arrayref($select->{'nav_items'}, { Slice => {} } );
 }
 
+sub get_items {
+    my $self = shift;
+    my $table = shift . '_items';
+    my $select = {
+        $table => qq{
+            SELECT *
+              FROM $table
+          ORDER BY position
+        },
+    };
+    return $self->dbh->selectall_arrayref($select->{$table}, { Slice => {} } );
+}
+
 sub hash_common {
     my $self = shift;
     return {
         step            => $self->form->{'step'} || 'main',
         base            => $self->base,
-        nav_items       => $self->nav_items,
+        nav_items       => $self->get_items('nav'),
+        footer_items    => $self->get_items('footer'),
         site_options    => $self->site_options,
         user            => $self->user,
     };
