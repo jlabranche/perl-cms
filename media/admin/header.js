@@ -34,28 +34,6 @@ $(document).ready(function() {
         });
     }
 
-    // Submit Navigation Menu changes
-    $(".js-submit").click(function(e){
-        e.preventDefault();
-        var data = {};
-        $.each($(this).parent().find("input"), function(){
-            if (!$(this).hasClass("inactive")) {
-                if (data[$(this).attr("name")] === undefined) {
-                    data[$(this).attr("name")] = [];
-                }
-                data[$(this).attr("name")].push($(this).val());
-            }
-        });
-        data.action = $(this).attr("action");
-        $.ajax({
-            url: 'admin/ajax',
-            method: "POST",
-            data: data,
-        }).done(function(){
-            showConfirmation();
-        });
-    });
-
     // Delete something from the navigation
     $(".delete").click(function(e){
         e.preventDefault();

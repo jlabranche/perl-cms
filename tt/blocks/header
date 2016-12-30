@@ -1,17 +1,23 @@
 <!doctype html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="[% base %]/media/themes/[% site_options.theme %]/main.css">
+        <base href="[% base %]">
+
+        <meta charset="UTF-8">
+        <title>Dashboard | [% site_options.title.0 %]</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+        <link rel="stylesheet/less" type="text/css" href="media/themes/[% site_options.theme.0 %]/main.less">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.1/less.min.js"></script>
     </head>
     <body>
-    [%# nav_bar %]
     <header>
-        <h1>[% site_title %]</h1>
+        <h1><a href="/">[% site_options.title.0 %]</a></h1>
         <nav>
-            <ul>
-                [% FOREACH nav_item IN nav_items %] 
-                    <li><a href="[% nav_item.href %]">[% nav_item.name %]</a></li>
-                [% END %]
-            </ul>
+            [% FOREACH nav_item IN nav_items %] 
+                <a href="[% nav_item.href %]">[% nav_item.name %]</a>
+            [% END %]
         </nav>
     </header>

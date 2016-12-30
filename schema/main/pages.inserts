@@ -1,1 +1,12 @@
-INSERT INTO `pages` VALUES (1,'First Page','first',NULL,'Hello World!',0,0,'2016-12-22 16:09:42',NULL,'2016-12-22 16:09:42');
+INSERT INTO `pages` VALUES (1,'First Page','first',NULL,
+'<p>Hello World!</p>
+
+<p>This is you're first page. Feel free to edit it, or create a new one.</p>
+
+<h3>Tips!</h3>
+<ul>
+<li>Use HTML to format your pages.</li>
+<li>Update your Perl CMS version often to stay up to date.</li>
+<li>Don't mix depressants and stimulants.</li>
+</ul>'
+,0,0,'2016-12-22 16:09:42',NULL,'2016-12-22 16:09:42');

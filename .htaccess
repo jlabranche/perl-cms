@@ -3,5 +3,12 @@ DirectoryIndex cgi-bin/index
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+# This next condition might be impacting performance
+# We should look into this
+RewriteCond ./cgi-bin/$1 -F
 RewriteRule (.*) ./cgi-bin/$1 [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule (.*) cgi-bin/index/$1 [NC,L,QSA]
 </IfModule>

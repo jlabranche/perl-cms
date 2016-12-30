@@ -1,0 +1,26 @@
+[% PROCESS layouts/admin/base %]
+[% BLOCK main %]
+
+<form action="ajax" method="post">
+    <h2>Site Title</h2>
+    <input type="text" name="value" value="[% site_options.title.0 %]">
+    <input type="hidden" name="id" value="[% site_options.title.1 %]">
+    <input type="hidden" name="type" value="update">
+    <button action="site_options" class="btn btn-primary js-submit"><i class="fa fa-check" aria-hidden="true"></i> Update</button>
+    <span class="confirmation">Success!</span>
+</form>
+
+<form action="ajax" method="post">
+    <h2>Theme</h2>
+    <select type="text" name="value">
+        [% FOREACH theme IN themes %]
+            <option [% IF theme eq site_options.theme.0 %]selected[% END %]>[% theme %]</option>
+        [% END %]
+    </select>
+    <input type="hidden" name="id" value="[% site_options.theme.1 %]">
+    <input type="hidden" name="type" value="update">
+    <button action="site_options" class="btn btn-primary js-submit"><i class="fa fa-check" aria-hidden="true"></i> Update</button>
+    <span class="confirmation">Success!</span>
+</form>
+
+[% END %]

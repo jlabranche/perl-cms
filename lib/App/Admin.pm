@@ -10,11 +10,12 @@ use JSON;
 sub allow_morph { 1 }
 sub pages_morph_package { 'App::Admin::Pages' }
 sub users_morph_package { 'App::Admin::Users' }
+sub site_options_morph_package { 'App::Admin::SiteOptions' }
 
 sub pre_step {
     my $self = shift;
     if (!$self->is_admin) {
-        $self->cgix->location_bounce($self->config->base."/login");
+        $self->cgix->location_bounce($self->config->base."login");
         $self->exit_nav_loop;
     }
 }

@@ -1,3 +1,4 @@
 <main>
-    [% content %]
+<h2>[% page_content.title %]</h2>
+[% page_content.content %]
 </main>

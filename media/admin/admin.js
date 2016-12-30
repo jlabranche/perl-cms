@@ -20,6 +20,27 @@ $(document).ready(function() {
         $(this).siblings("nav").slideToggle();
     });
 
+    // Submit js-submit changes
+    $(".js-submit").click(function(e){
+        e.preventDefault();
+        var data = {};
+        $.each($(this).parent().find("input, select"), function(){
+            if (!$(this).hasClass("inactive")) {
+                if (data[$(this).attr("name")] === undefined) {
+                    data[$(this).attr("name")] = [];
+                }
+                data[$(this).attr("name")].push($(this).val());
+            }
+        });
+        data.action = $(this).attr("action");
+        $.ajax({
+            url: 'admin/ajax',
+            method: "POST",
+            data: data,
+        }).done(function(){
+            showConfirmation();
+        });
+    });
 
 });
 

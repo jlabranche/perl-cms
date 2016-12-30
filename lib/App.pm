@@ -35,29 +35,17 @@ sub site_options {
     return $site_options;
 }
 
-sub nav_items {
-    my $self = shift;
-    my $select = {
-        nav_items => qq{
-            SELECT *
-              FROM nav_items
-          ORDER BY position
-        },
-    };
-    return $self->dbh->selectall_arrayref($select->{'nav_items'}, { Slice => {} } );
-}
-
 sub get_items {
     my $self = shift;
     my $table = shift . '_items';
     my $select = {
-        $table => qq{
+        'items' => qq{
             SELECT *
               FROM $table
           ORDER BY position
         },
     };
-    return $self->dbh->selectall_arrayref($select->{$table}, { Slice => {} } );
+    return $self->dbh->selectall_arrayref($select->{'items'}, { Slice => {} } );
 }
 
 sub hash_common {

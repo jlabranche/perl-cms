@@ -8,9 +8,20 @@ use CGI::Ex::Dump qw(debug);
 sub pages_pre_step {
     my $self = shift;
     if($self->form->{'page_id'} eq 'new') {
-        my $insert = $self->dbh->prepare(qq{INSERT INTO pages (title, author_id) VALUES ('New Page', ?)});
+        my $insert = $self->dbh->prepare(
+            qq{
+                INSERT INTO pages (title, author_id) 
+                     VALUES ('New Page', ?)
+            }
+        );
         $insert->execute($self->user->{'id'});
-        my @pages = $self->dbh->selectall_arrayref(qq{SELECT id, date_created FROM pages ORDER BY date_created DESC});
+        my @pages = $self->dbh->selectall_arrayref(
+            qq{
+                SELECT id, date_created 
+                  FROM pages 
+              ORDER BY date_created DESC
+            }
+        );
         $self->cgix->location_bounce("admin/pages/" + $pages[0][0][0]);
         $self->exit_nav_loop;
     }

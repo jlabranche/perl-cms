@@ -1,6 +1,9 @@
     <footer>
-        <hr>
-        <p>PERL CMS: Coming sometime [% completion_date %]<p>
+        <p>[% site_options.footer_text.0 %]</p>
+        &middot;
+        [% FOREACH item IN footer_items %] 
+            <a href="[% item.href %]">[% item.name %]</a> &middot; 
+        [% END %]
     </footer>
     </body>
 </html>

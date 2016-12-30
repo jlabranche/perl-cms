@@ -60,7 +60,7 @@ sub login {
         -expires => '1d',
         -path    => '/',
     });
-    $self->cgix->location_bounce($self->base."/admin");
+    $self->cgix->location_bounce($self->base."admin");
 }
 
 sub logout_hash_swap {{}}

@@ -72,9 +72,6 @@ form {
      .inactive {
         display: none;
     }
-    .rows {
-        margin-bottom: 10px;
-    }
 }
 fieldset {
     margin: 0;
@@ -144,7 +141,7 @@ input, select, button {
     outline: none;
 }
 textarea {
-    margin: 10px 0;
+    margin: 10px 0 0;
 }
 table {
     border-collapse: collapse;
@@ -160,6 +157,9 @@ table {
     }
     tr:nth-child(odd) {
         background-color: @offwhite;
+    }
+    .btn {
+        margin: 0;
     }
 }
 textarea {
@@ -178,6 +178,7 @@ textarea {
     font-size: 100%;
     line-height: 1.15;
     display: inline-block;
+    margin: 10px 0;
 
     &:hover {
          background: #7f8c8d;
