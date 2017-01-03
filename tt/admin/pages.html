@@ -17,6 +17,7 @@
         <th></th>
     </tr>
     [% FOR page IN pages %]
+    [% IF page.status ne "trashed" %]
     <tr>
         <td>[% page.title %]</td>
         <td>[% page.href %]</td>
@@ -26,6 +27,7 @@
         <td>[% page.author %]</td>
         <td><a class="btn btn-primary" href="admin/pages/[% page.id %]">EDIT</a></td>
     </tr>
+    [% END %]
     [% END %]
 </table>
 

@@ -5,10 +5,18 @@
     <fieldset>
         <label>Title <input type="text" name="title" value="[% pages.0.title %]"></label>
         <label>Location <input type="text" name="href" value="[% pages.0.href %]"></label>
+        <label class="small">Status
+            <select name="page_status_id">
+                <option [% IF pages.0.status eq 'draft' %]selected[% END %] value="0">Draft</option>
+                <option [% IF pages.0.status eq 'published' %]selected[% END %] value="1">Published</option>
+                <option [% IF pages.0.status eq 'trashed' %]selected[% END %] value="2">Trashed</option>
+            </select>
+        </label>
     </fieldset>
     <textarea name="content">[% pages.0.content %]</textarea>
     <input name="id" type="hidden" value="[% pages.0.id %]">
-    <button action="submit" class="btn btn-primary">Save Changes</button>
+    <input name="type" type="hidden" value="update">
+    <button action="pages" class="js-submit btn btn-primary">Save Changes</button>
     <span class="confirmation">Success!</span>
 </form>
 

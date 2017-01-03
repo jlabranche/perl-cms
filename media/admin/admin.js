@@ -33,6 +33,7 @@ $(document).ready(function() {
             }
         });
         data.action = $(this).attr("action");
+        console.log(data);
         $.ajax({
             url: 'admin/ajax',
             method: "POST",

@@ -12,7 +12,7 @@
 
 <form action="ajax" method="post">
     <h2>Theme</h2>
-    <select type="text" name="value">
+    <select name="value">
         [% FOREACH theme IN themes %]
             <option [% IF theme eq site_options.theme.0 %]selected[% END %]>[% theme %]</option>
         [% END %]
