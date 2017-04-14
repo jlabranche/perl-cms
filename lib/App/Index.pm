@@ -18,7 +18,7 @@ sub path_info_map {
 
 sub hash_swap {
     my $self = shift;
-    my $location = $self->form->{'location'};
+    my $location = $self->form->{'location'} ||= 'home';
     my $select = {
         'content' => qq{
             SELECT *

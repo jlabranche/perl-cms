@@ -1,14 +1,17 @@
 [% PROCESS layouts/admin/base %]
 [% BLOCK main %]
-
-<h2>Update User</h2>
-<form>
-<select></select>
-</form>
-
-<button>New User</button>
 <form>
     <h2>Add New User</h2>
 </form>
-</main>
+
+<form>
+    <h2>Remove User</h2>
+    <select name="id">
+        [% FOREACH user IN users -%]
+            <option value="[% user.id %]">[% user.user_name %]</option>
+        [% END %]
+    </select>
+    <input name="type" type="hidden" value="update">
+    <button action="users" class="js-submit btn btn-warning">Delete User</button>
+</form>
 [% END %]

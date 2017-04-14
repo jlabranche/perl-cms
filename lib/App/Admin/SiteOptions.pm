@@ -8,7 +8,6 @@ use CGI::Ex::Dump qw(debug);
 sub site_options_hash_swap {
     my $dir = './../media/themes';
     my @files;
-
     opendir(DIR, $dir) or die $!;
     while (my $file = readdir(DIR)) {
         # Ignore files beginning with a period

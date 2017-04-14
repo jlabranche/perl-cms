@@ -1,1 +1,1 @@
-INSERT INTO `page_status` VALUES (0,'draft'),(1,'published');
+INSERT INTO `page_status` VALUES (0,'draft'),(1,'published'),(2,'trahsed');

@@ -6,6 +6,7 @@
 @success: #2ecc71;
 @success-darker: #27ae60;
 @warning: #e74c3c;
+@warning-darker: #c0392b;
 
 * {
     box-sizing: border-box;
@@ -196,6 +197,15 @@ textarea {
     &:hover {
         background: @success-darker;
         border-color: @success;
+    }
+}
+.btn-warning {
+    background: @warning;
+    border-color: @warning-darker;
+
+    &:hover {
+        background: @warning-darker;
+        border-color: @warning;
     }
 }
 .confirmation {

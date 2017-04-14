@@ -33,19 +33,19 @@ $(document).ready(function() {
             }
         });
         data.action = $(this).attr("action");
-        console.log(data);
+        var me = $(this);
         $.ajax({
             url: 'admin/ajax',
             method: "POST",
             data: data,
         }).done(function(){
-            showConfirmation();
+            showConfirmation(me);
         });
     });
 
 });
 
 // Show a confirmation message
-function showConfirmation() {
-    $(".confirmation").fadeIn(100).delay(600).fadeOut(1000);
+function showConfirmation(me) {
+    me.next().fadeIn(100).delay(600).fadeOut(1000);
 }
